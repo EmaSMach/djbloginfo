@@ -9,7 +9,7 @@ from django.conf import settings
 class User(AbstractUser):
     """Extiende el Usuario de django"""
     ADMIN = 'ADMIN'
-    VISITANTE = 'VISITIANTE'
+    VISITANTE = 'VISITANTE'
     SOCIO = 'SOCIO'
 
     ROLE_CHOICES = (
