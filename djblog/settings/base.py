@@ -124,10 +124,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles' # usado en deploy, no es significante en local
 
 STATICFILES_DIRS = [
-    BASE_DIR.parent / 'static',
+    BASE_DIR.parent / 'static', # apuntar a una carpeta de mas arriba
 ]
 
 MEDIA_URL = 'media/'
