@@ -5,12 +5,7 @@ from .base import *
 
 ALLOWED_HOSTS = ['*']
 
-# configuración para usar postgres, vamos a leer la url de la variable de entorno
-# DATABASE_URL que nos proporciona heroku
-
-# DATABASE_URL = os.getenv('DATABASE_URL')
-
-# y eso lo usamos con dj_database_url para que lea los datos necesarios de la url
-# DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+# configuración según documentación de heroku
+# para usar postgres: 
+# https://devcenter.heroku.com/articles/connecting-heroku-postgres#connecting-with-django
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-# DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
