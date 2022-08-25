@@ -21,6 +21,7 @@ class User(AbstractUser):
     role = models.CharField('Role', max_length=12, choices=ROLE_CHOICES, default=VISITANTE)
     dni = models.CharField('DNI', max_length=12, null=True, blank=True)
     address = models.CharField('Domicilio', max_length=30, null=True, blank=True)
+    login_number = models.IntegerField('Número de logueos', default=0, null=True, blank=True)
 
 
 # class UserProfile(models.Model):
@@ -38,3 +39,8 @@ class User(AbstractUser):
 
 #     role = models.CharField('Role', max_length=12, choices=ROLE_CHOICES, default=VISITANTE)
 #     dni = models.CharField('DNI', max_length=12, null=True, blank=True)
+
+
+class Statistics(models.Model):
+    login_counter = models.IntegerField(default=0, null=True, blank=True)
+    number_of_visits = models.IntegerField(default=0, null=True, blank=True)

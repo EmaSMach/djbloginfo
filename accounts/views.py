@@ -19,6 +19,8 @@ def login_view(request):
             )
             if user is not None:
                 login(request, user)
+                user.login_number += 1
+                user.save()
                 return redirect('index')
             else:
                 messages.info(request, 'Credenciales inválidas')
