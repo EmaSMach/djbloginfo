@@ -1,6 +1,7 @@
 from pyexpat import model
 from django.db import models
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -15,7 +16,8 @@ class Category(models.Model):
 class Post(models.Model):
     imagen = models.ImageField(upload_to='images/')
     title = models.CharField('Título', max_length=200)
-    content = models.TextField()
+    description = models.TextField(null=True, blank=True)
+    content = RichTextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
