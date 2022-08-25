@@ -62,6 +62,8 @@ def post_delete(request, pk):
 def post_detail(request, pk):
     # buscamos el post y lo mostramos
     post = get_object_or_404(Post, id=pk)
+    post.views_number += 1
+    post.save()
     return render(request, 'blog/blog_detail.html', {'post': post})
 
 def comment_create(request, pk):
