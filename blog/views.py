@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import PostForm
-from .models import Post, Comments
+from .models import Category, Post, Comments
 from .forms import CommentForm
 
 
@@ -11,6 +11,7 @@ from .forms import CommentForm
 
 def post_list(request):
     # posts = Post.objects.all()
+    categories = Category.objects.all()
     posts_list = Post.objects.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(posts_list, 4)
@@ -21,7 +22,11 @@ def post_list(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/blog_list2.html', {'posts': posts})
+    context = {
+        'categories': categories,
+        'posts': posts,
+    }
+    return render(request, 'blog/blog_list2.html', context=context)
 
 
 def post_create(request):
