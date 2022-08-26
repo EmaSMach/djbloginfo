@@ -23,7 +23,7 @@ class Post(models.Model):
     views_number = models.IntegerField(default=0, null=True, blank=True)
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
-    category = models.ManyToManyField(Category, related_name='posts', blank=True)
+    categories = models.ManyToManyField(Category, related_name='posts', blank=True)
 
     def __str__(self):
         return self.title

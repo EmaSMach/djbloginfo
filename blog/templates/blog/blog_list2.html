@@ -12,9 +12,9 @@
               {% for post in posts %}
                 <div class="col-xl-6">
                     <a class="mb-3 ratio ratio-4x3" href="{% url 'post_detail' post.id %}"><img class="img-fluid" src="{{ post.imagen.url }}" alt="..."/></a>
-                    <div class="d-flex align-items-center justify-content-between mb-2"><small class="text-gray-500">20 May | 2016</small><a class="small fw-bold text-uppercase small" href="!#">Business</a></div>
-                    <h3 class="h4"><a class="text-dark" href="post.html">Alberto Savoia Can Teach You About Interior</a></h3>
-                    <p class="text-muted text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                    <div class="d-flex align-items-center justify-content-between mb-2"><small class="text-gray-500">20 May | 2016</small><a class="small fw-bold text-uppercase small" href="#">{{ post.categories.first.name }}{% if post.categories.count > 1 %} <i class="fa-solid fa-plus"></i>{{ post.categories.count|add:"-1" }}{% endif %}</a></div>
+                    <h3 class="h4"><a class="text-dark" href="post.html">{{ post.title }}</a></h3>
+                    <p class="text-muted text-sm">{{ post.summary }}</p>
                     <ul class="list-inline list-separated text-gray-500 mb-0">
                     <li class="list-inline-item">
                         <a class="d-flex align-items-center flex-wrap text-reset" href="!#">

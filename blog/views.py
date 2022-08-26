@@ -73,6 +73,7 @@ def post_detail(request, pk):
     # buscamos el post y lo mostramos
     post = get_object_or_404(Post, id=pk)
     if request.method == 'GET':
+        # aumentamos en 1 el contador de visitas a este post
         post.views_number += 1
         post.save()
     return render(request, 'blog/blog_detail.html', {'post': post})
