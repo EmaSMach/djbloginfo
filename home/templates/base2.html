@@ -209,6 +209,8 @@
             <div class="fsc-hover-overlay"><i class="fas fa-search fsc-hover-overlay-icon"></i></div></a></div>
       </div>
     </section> -->
+    {% endblock content%}
+    {% block footer %}
     <!-- Page Footer-->
     <footer class="footer text-white" style="background: #0e0e0e">
       <div class="container">
@@ -276,7 +278,7 @@
         </div>
       </div>
     </div>
-    {% endblock content %}
+    {% endblock footer %}
     <!-- JavaScript files-->
     {% block javascript %}
     <script src="{% static 'theme/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

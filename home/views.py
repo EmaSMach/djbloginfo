@@ -5,7 +5,7 @@ from blog.models import Post
 
 def index(request):
     # traigo los últimos posts
-    posts = Post.objects.filter(active=True).order_by('-created_at')[:5]
+    posts = Post.objects.filter(active=True).order_by('-created_at')[:3]
     context = {
         'title': 'InfoBlog',
         'posts': posts,
