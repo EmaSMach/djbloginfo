@@ -13,7 +13,7 @@ def post_list(request):
     # posts = Post.objects.all()
     posts_list = Post.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts_list, 1)
+    paginator = Paginator(posts_list, 4)
 
     try:
         posts = paginator.page(page)
