@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import PostForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from .forms import PostForm
 from .models import Post, Comments
 from .forms import CommentForm
 
@@ -9,7 +10,17 @@ from .forms import CommentForm
 # Create your views here.
 
 def post_list(request):
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
+    posts_list = Post.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts_list, 1)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/blog_list2.html', {'posts': posts})
 
 
