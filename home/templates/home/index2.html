@@ -42,7 +42,7 @@
           <div class="text-inner d-flex align-items-center h-100 {% if post_order == 0 %}bg-white{% else %}bg-light{% endif %}">
             <div class="content px-4 px-lg-5">
               <ul class="list-inline mb-1">
-                {% for post_category in post.categories %}
+                {% for post_category in post.categories.all %}
                 <li class="list-inline-item"><a class="text-uppercase text-dark small fw-bold" href="#">{{ post_category.name }}</a></li>
                 {% endfor %}
                 <!-- <li class="list-inline-item"><a class="text-uppercase text-dark small fw-bold" href="!#">Technology</a></li> -->
@@ -95,7 +95,7 @@
           <a class="mb-3 ratio ratio-4x3" href="{% url 'post_detail' post.id %}">
             <img class="img-fluid" src="{{ post.imagen.url }}" alt="..."/>
           </a>
-          <div class="d-flex align-items-center justify-content-between mb-2"><small class="text-gray-500">{{ post.created_at }}</small>{% for post_category in post.categories %}<a class="small fw-bold text-uppercase small" href="!#">{{ post_category.name }}</a>{% endfor %}</div>
+          <div class="d-flex align-items-center justify-content-between mb-2"><small class="text-gray-500">{{ post.created_at }}</small>{% for post_category in post.categories.all %}<a class="small fw-bold text-uppercase small" href="!#">{{ post_category.name }}</a>{% endfor %}</div>
           <h3 class="h4"><a class="text-dark" href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
           <p class="text-muted text-sm">{{ post.summary }}</p>
         </div>

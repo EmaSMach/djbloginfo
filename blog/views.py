@@ -81,7 +81,7 @@ def post_detail(request, pk):
         # aumentamos en 1 el contador de visitas a este post
         post.views_number += 1
         post.save()
-    return render(request, 'blog/blog_detail.html', {'post': post})
+    return render(request, 'blog/blog_detail2.html', {'post': post})
 
 def comment_create(request, pk):
     # buscamos el post y lo mostramos
