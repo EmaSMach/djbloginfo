@@ -22,6 +22,7 @@ class Post(models.Model):
     active = models.BooleanField(default=True)
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
+    category = models.ManyToManyField(Category, related_name='posts', null=True, blank=True)
 
     def __str__(self):
         return self.title
