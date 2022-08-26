@@ -10,8 +10,7 @@ from .forms import CommentForm
 
 def post_list(request):
     posts = Post.objects.all()
-    print(posts.query)
-    return render(request, 'blog/blog_list.html', {'posts': posts})
+    return render(request, 'blog/blog_list2.html', {'posts': posts})
 
 
 def post_create(request):
