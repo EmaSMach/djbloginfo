@@ -9,6 +9,9 @@ class Category(models.Model):
     name = models.CharField('Categoría', max_length=120)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = 'Categorías'
+
     def __str__(self):
         return self.name
 
@@ -32,6 +35,9 @@ class Comments(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+
+    class Meta:
+        verbose_name_plural = 'Comentarios'
 
     def __str__(self):
         return self.content[:10]
