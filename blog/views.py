@@ -1,17 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import PostForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Post, Comments
+from .forms import PostForm
+from .models import Category, Post, Comments
 from .forms import CommentForm
 
 
 # Create your views here.
 
 def post_list(request):
-    posts = Post.objects.all()
-    print(posts.query)
-    return render(request, 'blog/blog_list.html', {'posts': posts})
+    # posts = Post.objects.all()
+    categories = Category.objects.all()
+    posts_list = Post.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts_list, 4)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        'categories': categories,
+        'posts': posts,
+    }
+    return render(request, 'blog/blog_list2.html', context=context)
 
 
 def post_create(request):
@@ -29,6 +44,8 @@ def post_create(request):
             post = form.save(commit=False)
             post.user = request.user # asignamos el autor del post
             post.save() # guardamos
+            # url_blog = request.build_absolute_uri()
+            # enviar_correo.delay(url_blog)
             messages.success(request, 'Post creado con éxito') # mandamos un mensaje de éxito
             return redirect('post_list') # dirigimos al usuario a la página que nos parezca
         messages.error(request, 'Hay errores en el formulario')
@@ -62,9 +79,17 @@ def post_delete(request, pk):
 def post_detail(request, pk):
     # buscamos el post y lo mostramos
     post = get_object_or_404(Post, id=pk)
-    post.views_number += 1
-    post.save()
-    return render(request, 'blog/blog_detail.html', {'post': post})
+
+    # post.views_number += 1
+    # post.save()
+    # return render(request, 'blog/blog_detail.html', {'post': post})
+
+    if request.method == 'GET':
+        # aumentamos en 1 el contador de visitas a este post
+        post.views_number += 1
+        post.save()
+    return render(request, 'blog/blog_detail2.html', {'post': post})
+
 
 def comment_create(request, pk):
     # buscamos el post y lo mostramos
