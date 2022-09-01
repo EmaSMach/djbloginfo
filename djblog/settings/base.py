@@ -128,7 +128,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles' # usado en deploy, no es significante en local
 
 STATICFILES_DIRS = [
-    BASE_DIR.parent / 'static', # apuntar a una carpeta de mas arriba
+    BASE_DIR.parent / 'static', # apuntar a una carpeta de mas arriba, depende de la estructura de cada proyecto
 ]
 
 MEDIA_URL = 'media/'
